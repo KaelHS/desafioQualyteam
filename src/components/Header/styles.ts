@@ -45,7 +45,7 @@ export const Nav = styled.div`
             height: 0.1rem;
             bottom: 0;
             left: 0;
-            background: var(--section-background);
+            background: var(--blue-ligth);
             -webkit-transform: scaleX(0);
             transform: scaleX(0);
             -webkit-transition: all 0.3s ease-in-out 0s;

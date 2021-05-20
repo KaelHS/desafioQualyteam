@@ -1,7 +1,11 @@
 import React from "react";
 import { HeaderContainer, HeaderSection, Nav, InfoContainer } from "./styles";
 
-export function Header () {
+interface HeaderProps {
+    onOpenNewNonConformityModal: () => void;
+}
+
+export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
     return (
         <HeaderSection>
             <HeaderContainer>
@@ -13,6 +17,10 @@ export function Header () {
                         <li><a href="#">Visão Geral</a></li>
                     </ul>
                 </Nav>
+                <button 
+                    type="button"
+                    onClick={onOpenNewNonConformityModal}
+                >Nova Ocorrência</button>
                 <InfoContainer>
                     <span>Empresa</span>
                     <div>
