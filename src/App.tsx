@@ -3,6 +3,7 @@ import { GlobalStyle } from './styles/global';
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { NewNonConformityModal } from './components/NewNonConformityModal';
+import { NonConformityTable } from './components/NonConformityTable';
 
 Modal.setAppElement('#root');
 
@@ -21,10 +22,11 @@ function handleCloseNewConformityModal() {
   return (
     <div className="App">
       <Header onOpenNewNonConformityModal={handleOpenNewConformityModal}/>
+      <NonConformityTable />
       <GlobalStyle />
-      <NewNonConformityModal
+      {/* <NewNonConformityModal
       isOpen={isNonConformityModalOpen}
-      onRequestClose={handleCloseNewConformityModal} /> 
+      onRequestClose={handleCloseNewConformityModal} />  */}
     </div>
   );
 }

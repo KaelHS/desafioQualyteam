@@ -5,9 +5,6 @@ export const HeaderSection = styled.header`
     background: var(--blue-dark);
     padding: 2rem 6rem;
 
-
-    border-bottom: 1px solid var(--section-background);
-
 `;
 
 export const HeaderContainer = styled.div`
@@ -92,5 +89,41 @@ export const InfoContainer = styled.div`
         }
     }
 
+`;
 
+export const SubHeaderSection = styled.section`
+    background: var(--section-background);
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 2rem 3rem;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    border-bottom: 1px dashed #2cb;
+
+    h1 {
+        line-height:3.5rem;
+        font-size: 4rem;
+        font-family: 'Titillium Web', sans-serif;
+        font-weight: 700;
+
+        span {
+            display: block;
+        }
+    
+    }
+
+    button {
+        height: 3rem;
+        background: #2cb;
+        border-radius: 0.25rem;
+        border: 2px solid #2cb;
+        padding: 0 0.125rem;
+
+        &:hover {
+            background: transparent;
+        }
+    }
+    
 `;
