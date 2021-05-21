@@ -9,20 +9,25 @@ export const TableContent = styled.div`
 
     th, td {
             padding: 0.75rem 0.5rem;
-            border-bottom: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--ligh-blue);
         }
     
         th {
-            /* color: var(--gray-200); */
+            background: var(--blue);
             text-transform: uppercase;
             font-weight: 600;
             font-family: 'Titillium Web', sans-serif;
             font-size: 1rem;
             text-align: left;
+            color: var(--section-background);
+            margin-bottom: 0.825rem;
         }
 
         td {
             font-size: 0.875rem;
+            background: var(--section-background);
+
+
         }
 
         .descriptionData {
