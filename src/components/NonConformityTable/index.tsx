@@ -1,21 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { TableContent } from "./styles";
-
-interface NonConformity {
-    id: number;
-    title: string;
-    description: string;
-    "ocurrence-date": string;
-    departments: Array<number>;
-    'corrective-actions': Array<number>
-}
-
-interface nonConformityFormatted extends NonConformity{
-    ocurrenceDateFormatted: Date;    
-}
+import { TableContent } from "./styles";    
+import { useNonConformity } from '../../contexts/useNonConformity';
 
 interface Department {
     id: number;
@@ -24,27 +12,9 @@ interface Department {
 
 export function NonConformityTable () {
 
-    const [ nonConformities, setNonConformities ] = useState<NonConformity[]>([]);
     const [ department, setDepartment ] = useState<Department[]>([]);
 
-    async function loadNonConformityData() {
-
-        const nonConformityResponse = await api.get<NonConformity[]>("/non-conformities", {
-            params: {
-                _sort: 'ocurrence-date',
-                _order: 'desc'
-            }
-        });
-
-        const data = nonConformityResponse.data.map( nonConformity => ({
-            ...nonConformity,
-            // ocurrenceDate: new Intl.DateTimeFormat('pt-BR').format( new Date(nonConformity["ocurrence-date"]))
-            ocurrenceDate: nonConformity["ocurrence-date"]
-        }))
-
-        setNonConformities(data);
-
-    }
+    const { nonConformities } = useNonConformity();
 
     async function loadDepartments () {
 
@@ -57,8 +27,6 @@ export function NonConformityTable () {
 
     useEffect( () => {
         
-
-        loadNonConformityData();
         loadDepartments();
 
         console.log(nonConformities);

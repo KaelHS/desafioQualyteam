@@ -59,5 +59,7 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
 }
 
 export function useNonConformity() {
-    const context = useContext(NonConformityContext)
+    const context = useContext(NonConformityContext);
+
+    return context;
 }

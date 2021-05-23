@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { HiX } from "react-icons/hi";
 import { FormContainer } from './styles';
+import { useNonConformity } from '../../contexts/useNonConformity';
 
 interface NewNonConformityModalProps {
     isOpen: boolean;
@@ -22,6 +23,9 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
     const [ correctiveActions, setCorrectiveActions ] = useState({});
     
     const [ departments, setDepartments ] = useState<Department[]>([]);
+
+    const { createNonConformity } = useNonConformity();
+
     // function handleSetDepartments ( event: ChangeEvent<HTMLInputElement> ) {
     //     if ( event.target.checked  ) {
     //         setDepartments([{...departments}, event.target.value])
@@ -32,6 +36,17 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
 
     async function handleCreateNewNonConformity( event: FormEvent) {
         event.preventDefault();
+
+        // await createNonConformity({
+        //     title,
+        //     description,
+        //     departments, 
+        //     "ocurrence-date",
+        //     "corrective-actions",
+        // })
+
+        // onRequestClose();
+
 
     }
         
@@ -52,14 +67,15 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
                 <label htmlFor="title">Título</label>
                 <input 
                     type="text"
-                    id="description"
-                    value={description}
+                    id="title"
+                    value={title}
                     onChange={ event => setTitle(event.target.value)}/>
                 <label htmlFor="description">Descrição</label>
                 <textarea
                     id="description"
                     rows={5}
                     cols= {25}
+                    value={description}
                     onChange={ event => setDescription(event.target.value)}
                      ></textarea>
 

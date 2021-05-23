@@ -27,8 +27,17 @@ export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
                 <InfoContainer>
                     <span>Empresa</span>
                     <div>
-                        <strong>Olá, Kael</strong>
-                        <span>Administrador</span>
+                        <ul>
+                            <li>
+                                <strong>Olá, Kael</strong>
+                                <span>Administrador</span>
+                                <ul className="sub-menu-login">
+                                    <li><a href="#">Configuração</a></li>
+                                    <li><a href="#">Sair</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
                     </div>
                 </InfoContainer>
             </HeaderContainer>
