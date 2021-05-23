@@ -24,9 +24,9 @@ function handleCloseNewConformityModal() {
       <Header onOpenNewNonConformityModal={handleOpenNewConformityModal}/>
       <NonConformityTable />
       <GlobalStyle />
-      {/* <NewNonConformityModal
+      <NewNonConformityModal
       isOpen={isNonConformityModalOpen}
-      onRequestClose={handleCloseNewConformityModal} />  */}
+      onRequestClose={handleCloseNewConformityModal} /> 
     </div>
   );
 }

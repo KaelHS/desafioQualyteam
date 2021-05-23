@@ -25,6 +25,8 @@ export const TableContent = styled.div`
 
         td {
             font-size: 0.875rem;
+            font-family: 'Titillium Web', sans-serif;
+            font-weight: 600;
             background: var(--section-background);
 
 

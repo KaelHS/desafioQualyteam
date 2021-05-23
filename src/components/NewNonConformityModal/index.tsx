@@ -33,12 +33,6 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
     async function handleCreateNewNonConformity( event: FormEvent) {
         event.preventDefault();
 
-        // await createTransaction({
-        //     title,
-        //     amount,
-        //     category,
-        //     type,
-        // })
     }
         
     return(
@@ -90,6 +84,8 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
                         value="Sales"
                          />Vendas</label>
                 </div>
+                <label htmlFor="ocurrence-date">Data da ocorrência</label>
+                <input type="date" name="ocurrence-date" id="ocurrence-date" />
                 <button type="submit">Cadastrar</button>
             </FormContainer>
 

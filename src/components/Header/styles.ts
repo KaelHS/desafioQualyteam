@@ -120,9 +120,15 @@ export const SubHeaderSection = styled.section`
         border-radius: 0.25rem;
         border: 2px solid #2cb;
         padding: 0 0.125rem;
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--text-blue);
+
+        transition: filter 0.2s;
 
         &:hover {
-            background: transparent;
+            filter: brightness(0.9);
+            color: var(--section-background);
         }
     }
     
