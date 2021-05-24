@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter , Switch, Route, Link } from 'react-router-dom';
 import { api } from "../../services/api";
 import { TableContent } from "./styles";    
 import { useNonConformity } from '../../contexts/useNonConformity';
@@ -13,7 +14,7 @@ interface Department {
 }
 
 interface NonConformityTableProps {
-    onOpenViewModal: () => void;
+    onOpenViewModal: ( ) => void;
 }
 export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps) {
 
@@ -27,40 +28,15 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
 
         setDepartment(data);
 
-        
     }
+
+
 
     useEffect( () => {
         
         loadDepartments();
 
-        console.log(nonConformities);
-        console.log(department);
-
-
-            // const nonConformityFormatted = nonConformityResponse.data.map( nonConformity => {
-            //     return {
-            //         id: nonConformity.id,
-            //         title: nonConformity.title,
-            //         description: nonConformity.description,
-            //         ocurrenceDate: format(parseISO(nonConformity["ocurrence-date"]),'d MMM yy', { locale: ptBR } ),
-            //         departments: nonConformity.departments,
-            //         correctiveActions: nonConformity['corrective-actions']
-            //     }
-            // } );
-
-
-        // function dataOrdered () {
-        //     const newArray = [...data];
-        //     newArray.forEach( (item) => item['ocurrence-date'].Date.parse() );
-        //     })
-        // }
-
-        // api.get('/departments').then( response => setDepartment(response.data));
-
     }, [])
-
-
 
     return (
         <TableContent>
@@ -76,17 +52,22 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                     </tr>
                 </thead>
                 <tbody>
+                    <BrowserRouter>
                     { nonConformities.map ( nonConformity => (
-                        <tr key={ nonConformity.id} className="data-row">
+                        <tr key={ nonConformity.id}>
                             <td>
                             <button>
-                                <img src={deleteIcon} alt="Deletar não conformidade" />
+                                <Link to="">
+                                    <img src={deleteIcon} alt="Deletar não conformidade" />
+                                </Link>
                             </button>
                             <button
                                 type="button"
                                 onClick={onOpenViewModal}
                             >
-                                <img src={sheetIcon} alt="Visualizar não conformidade" />
+                                <Link to={`/non-conformities/${nonConformity.id}`}>
+                                    <img src={sheetIcon} alt="Visualizar não conformidade" />
+                                </Link>
                             </button>
                             </td>
                             <td>{nonConformity.title}</td>
@@ -95,6 +76,7 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                             <td>{ nonConformity["ocurrence-date"] }</td>
                         </tr>
                     ))}
+                    </BrowserRouter>
                 </tbody>
             </table>
         </TableContent>

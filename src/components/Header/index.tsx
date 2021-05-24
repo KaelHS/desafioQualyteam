@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter , Switch, Route, Link } from 'react-router-dom';
 import { HeaderContainer, HeaderSection, Nav, InfoContainer, SubHeaderSection } from "./styles";
 
 import { MdAddCircleOutline } from "react-icons/md";
@@ -14,13 +15,14 @@ export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
     return (
         <>
         <HeaderSection>
+            <BrowserRouter>
             <HeaderContainer>
                 <Nav>
                     {/* <img src="" alt="Qualyteam" /> */}
                     <ul>
-                        <li><a href="#">Início</a></li>
-                        <li><a href="#">Consultas</a></li>
-                        <li><a href="#">Visão Geral</a></li>
+                        <li><Link to="">Início</Link></li>
+                        <li><Link to="">Consultas</Link></li>
+                        <li><Link to="">Visão Geral</Link></li>
                     </ul>
                 </Nav>
 
@@ -32,15 +34,15 @@ export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
                                 <strong>Olá, Kael</strong>
                                 <span>Administrador</span>
                                 <ul className="sub-menu-login">
-                                    <li><a href="#">Configuração</a></li>
-                                    <li><a href="#">Sair</a></li>
+                                    <li><Link to="">Configurações</Link></li>
+                                    <li><Link to="">Sair</Link></li>
                                 </ul>
                             </li>
                         </ul>
-
                     </div>
                 </InfoContainer>
             </HeaderContainer>
+            </BrowserRouter>
         </HeaderSection>
         <SubHeaderSection>
                 <h1> <span>Não </span>Conformidades </h1>

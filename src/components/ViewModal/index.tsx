@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
 
 import { HiX } from "react-icons/hi";
+import { useEffect } from 'react';
 
 
 interface ViewyModalProps {
@@ -9,6 +10,8 @@ interface ViewyModalProps {
 }
 
 export function ViewModal ({isOpen, onRequestClose} : ViewyModalProps) {
+
+
     return(
         <Modal
             isOpen={isOpen}

@@ -23,7 +23,7 @@ function handleCloseNewConformityModal() {
   setIsNonConformityModalOpen(false);
   }
 
-  function handleOpenViewModal() {
+  function handleOpenViewModal( ) {
     setIsViewModalOpen(true);
   }
 
@@ -39,6 +39,11 @@ function handleCloseViewModal() {
       <NewNonConformityModal
         isOpen={isNonConformityModalOpen}
         onRequestClose={handleCloseNewConformityModal} /> 
+
+
+
+
+        
       <ViewModal
         isOpen={isViewModalOpen}
         onRequestClose={handleCloseViewModal} /> 
