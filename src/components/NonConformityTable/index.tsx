@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
-import { format, parseISO } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 import { TableContent } from "./styles";    
 import { useNonConformity } from '../../contexts/useNonConformity';
+
+import  deleteIcon  from '../../assets/deleteIcon.png';
+import sheetIcon from '../../assets/sheetIcon.png';
+
 
 interface Department {
     id: number;
     name: string;
 }
 
-export function NonConformityTable () {
+interface NonConformityTableProps {
+    onOpenViewModal: () => void;
+}
+export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps) {
 
     const [ department, setDepartment ] = useState<Department[]>([]);
 
@@ -62,6 +67,7 @@ export function NonConformityTable () {
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Ocorrência</th>
                         <th>Descrição</th>
                         <th>Departamentos</th>
@@ -71,7 +77,18 @@ export function NonConformityTable () {
                 </thead>
                 <tbody>
                     { nonConformities.map ( nonConformity => (
-                        <tr key={ nonConformity.id}>
+                        <tr key={ nonConformity.id} className="data-row">
+                            <td>
+                            <button>
+                                <img src={deleteIcon} alt="Deletar não conformidade" />
+                            </button>
+                            <button
+                                type="button"
+                                onClick={onOpenViewModal}
+                            >
+                                <img src={sheetIcon} alt="Visualizar não conformidade" />
+                            </button>
+                            </td>
                             <td>{nonConformity.title}</td>
                             <td className="descriptionData">{ nonConformity.description }</td>
                             <td>{nonConformity.departments}</td>

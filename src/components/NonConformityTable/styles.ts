@@ -29,6 +29,22 @@ export const TableContent = styled.div`
             font-weight: 600;
             background: var(--section-background);
 
+            button {
+                display: inline-block;
+                width: 1rem;
+                height: 2rem;
+                border: none;
+                margin: 0 0.4rem;
+
+                
+                img {
+                width: 1.1rem;
+                height: 1.3rem;
+
+                }
+            }
+
+
 
         }
 
