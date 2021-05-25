@@ -3,6 +3,7 @@ import { api } from '../../services/api';
 import  { RouteComponentProps, withRouter } from 'react-router-dom';
 import IPage from '../../interfaces/pages';
 
+import { Container } from './styles';
 
 interface NonConformity {
     id: number;
@@ -34,7 +35,8 @@ const NonConformity: FunctionComponent<IPage & RouteComponentProps<any>> = ( pro
 
     return (
         <>
-            <p>{nConformity.title}</p>
+        <Container>
+            <h1>{nConformity.title}</h1>
             <p>{nConformity.description}</p>
             <p>{nConformity.departments}</p>
             <p>{nConformity['corrective-actions']}</p>
@@ -45,6 +47,7 @@ const NonConformity: FunctionComponent<IPage & RouteComponentProps<any>> = ( pro
                 >
                     Cadastrar ações corretivas</button>
             </div>
+        </Container>
         </>
     );
 }

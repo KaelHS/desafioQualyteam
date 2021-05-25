@@ -22,20 +22,6 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
 
     const { nonConformities } = useNonConformity();
 
-    const  getDepartmentById: any = ( arraydpts: Array<number> ) => {
-
-        let deptList = department.filter( dpto => 
-            arraydpts.filter( ( id ) => 
-                { 
-                    if (id === dpto.id){
-                        return(
-                            <p>{ JSON.stringify(dpto.name) } </p>
-                        );
-                    }}
-                    ) )
-
-    }
-
 
     useEffect( () => {
         async function loadDepartments () {
@@ -49,7 +35,7 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
         loadDepartments();
 
 
-    }, [])
+    }, [nonConformities])
 
     return (
         <BrowserRouter>
@@ -68,7 +54,7 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                 </thead>
                 <tbody>
 
-                    { nonConformities.map ( (nonConformity, index ) => (
+                    { nonConformities.map ( nonConformity => (
                         <tr key={ nonConformity.id}>
                             <td>
                             <button>
@@ -88,11 +74,18 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                             <td>{nonConformity.title}</td>
                             <td className="descriptionData">{ nonConformity.description }</td>
                             <td>
-                                {getDepartmentById (nonConformity.departments) }
-                                {/* { department.filter( ( dpt ) => {
-                                    if ( dpt.id === nonConformity.departments[index]) {
-                                    return JSON.stringify(dpt.name);
-                                }})} */}
+                                {  
+                                    nonConformity.departments.map( x => {
+                                        let depto = department.find( item => item.id === x );
+                                        if (depto) { 
+                                            if (nonConformity.departments.length > 1){
+                                                return depto.name + ',  ';
+                                            } else {
+                                                return depto.name ;
+                                            }
+                                        }      
+                                      })
+                                }
                             </td>
                             <td>{ nonConformity["ocurrence-date"] }</td>
                         </tr>
@@ -100,13 +93,7 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
 
                 </tbody>
             </table>
-            <div>
-                { department.map( (dpt) => (
-                    <ul key={dpt.id}>
-                        <h2>{dpt.name}</h2>
-                    </ul>
-                ))}
-            </div>
+
         </TableContent>
         </Switch>
         </BrowserRouter>
