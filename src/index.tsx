@@ -1,16 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { App } from './App';
-import { NonConformity } from './pages/NonConformity';
-
+import { BrowserRouter, Switch, Route, RouteComponentProps } from 'react-router-dom'
+import { routes } from './services/routes';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={App} />
-      <Route path="/non-conformity/:id " component={NonConformity} />
+      { routes.map( (route, index) => {
+          return(
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            render={ ( props : RouteComponentProps<any>) => (
+              <route.component
+                name={route.name}
+                { ...props }
+                { ...route.props }
+              />
+            )}
+            />
+          ) 
+            })}
     </Switch>
-</ BrowserRouter>,
+</BrowserRouter>,
   document.getElementById('root')
 );

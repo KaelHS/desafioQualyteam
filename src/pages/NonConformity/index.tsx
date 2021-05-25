@@ -1,30 +1,52 @@
-import { useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { api } from '../../services/api';
-import  { RouteComponentProps, useRouteMatch, useParams, BrowserRouter , Switch, Route, Link } from 'react-router-dom';
-import { useNonConformity } from '../../contexts/useNonConformity';
+import  { RouteComponentProps, withRouter } from 'react-router-dom';
+import IPage from '../../interfaces/pages';
 
 
+interface NonConformity {
+    id: number;
+    title: string;
+    description: string;
+    "ocurrence-date": string;
+    departments: Array<number>;
+    'corrective-actions': Array<number>
+}
 
+const NonConformity: FunctionComponent<IPage & RouteComponentProps<any>> = ( props ) => {
 
-export function NonConformity (  ) {
-
-    const { nonConformities } = useNonConformity();
-    
-    const { nonConformityId }  = useParams();
-
-    const { path, url } = useRouteMatch();  
-
-    const nonConformity = nonConformities.find( ({ id }) => id === nonConformityId )
-
-
+    const [ nConformity, setNConformity ] = useState<NonConformity>({} as NonConformity);
 
     useEffect ( () => {
-        api.get(`/non-conformities/${id}`);
-    }, id );
+
+        const slug = props.match.params.slug;
+
+        async function getData () {
+            
+            const { data } =  await api.get(`/non-conformities/${slug}`);
+
+            setNConformity(data);
+        }
+
+        getData();
+
+    }, [props] );
 
     return (
-        <div>
-            <h2> teste </h2>
-        </div>
+        <>
+            <p>{nConformity.title}</p>
+            <p>{nConformity.description}</p>
+            <p>{nConformity.departments}</p>
+            <p>{nConformity['corrective-actions']}</p>
+
+            <div>
+                <button
+                    type="button"
+                >
+                    Cadastrar ações corretivas</button>
+            </div>
+        </>
     );
 }
+
+export default withRouter(NonConformity);

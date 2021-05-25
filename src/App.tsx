@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { NewNonConformityModal } from './components/NewNonConformityModal';
 import { ViewModal } from './components/ViewModal';
@@ -33,6 +33,7 @@ function handleCloseViewModal() {
 
   return (
     <NonConformityProvider>
+
       <Header onOpenNewNonConformityModal={handleOpenNewConformityModal}/>
       <NonConformityTable onOpenViewModal={handleOpenViewModal}/>
       <GlobalStyle />
@@ -47,7 +48,6 @@ function handleCloseViewModal() {
       <ViewModal
         isOpen={isViewModalOpen}
         onRequestClose={handleCloseViewModal} /> 
-
       </NonConformityProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter , Switch, Route, Link } from 'react-router-dom';
 import { api } from "../../services/api";
 import { TableContent } from "./styles";    
@@ -22,23 +22,23 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
 
     const { nonConformities } = useNonConformity();
 
-    async function loadDepartments () {
-
-        const { data } = await api.get('/departments');
-
-        setDepartment(data);
-
-    }
-
-
 
     useEffect( () => {
+        async function loadDepartments () {
+
+            const { data } = await api.get('/departments');
+    
+            setDepartment(data);
+    
+        }
         
         loadDepartments();
 
     }, [])
 
     return (
+        <BrowserRouter>
+        <Switch>
         <TableContent>
             <table>
                 <thead>
@@ -52,7 +52,7 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                     </tr>
                 </thead>
                 <tbody>
-                    <BrowserRouter>
+
                     { nonConformities.map ( nonConformity => (
                         <tr key={ nonConformity.id}>
                             <td>
@@ -63,9 +63,9 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                             </button>
                             <button
                                 type="button"
-                                onClick={onOpenViewModal}
+                                // onClick={onOpenViewModal}
                             >
-                                <Link to={`/non-conformities/${nonConformity.id}`}>
+                                <Link to={`/nonconformity/${nonConformity.id}`}>
                                     <img src={sheetIcon} alt="Visualizar não conformidade" />
                                 </Link>
                             </button>
@@ -76,9 +76,11 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                             <td>{ nonConformity["ocurrence-date"] }</td>
                         </tr>
                     ))}
-                    </BrowserRouter>
+
                 </tbody>
             </table>
         </TableContent>
+        </Switch>
+        </BrowserRouter>
     );
 }
