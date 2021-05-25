@@ -53,10 +53,25 @@ export const GlobalStyle = createGlobalStyle`
 
     .react-modal-content{
         width: 100%;
+        max-height: 1200px;
         max-width: 1000px;
         background: var(--section-background);
         padding: 3rem;
         position: relative;
         border-radius:0.25rem;
     } 
+
+    .react-modal-close {
+    position:absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
+
+    transition: filter 0.2s;
+
+    &:hover {
+        filter:brightness(0.8)
+    }
+    }
 `;

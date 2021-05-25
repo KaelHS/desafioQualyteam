@@ -22,6 +22,20 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
 
     const { nonConformities } = useNonConformity();
 
+    const  getDepartmentById: any = ( arraydpts: Array<number> ) => {
+
+        let deptList = department.filter( dpto => 
+            arraydpts.filter( ( id ) => 
+                { 
+                    if (id === dpto.id){
+                        return(
+                            <p>{ JSON.stringify(dpto.name) } </p>
+                        );
+                    }}
+                    ) )
+
+    }
+
 
     useEffect( () => {
         async function loadDepartments () {
@@ -33,6 +47,7 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
         }
         
         loadDepartments();
+
 
     }, [])
 
@@ -53,7 +68,7 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                 </thead>
                 <tbody>
 
-                    { nonConformities.map ( nonConformity => (
+                    { nonConformities.map ( (nonConformity, index ) => (
                         <tr key={ nonConformity.id}>
                             <td>
                             <button>
@@ -72,13 +87,26 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                             </td>
                             <td>{nonConformity.title}</td>
                             <td className="descriptionData">{ nonConformity.description }</td>
-                            <td>{nonConformity.departments}</td>
+                            <td>
+                                {getDepartmentById (nonConformity.departments) }
+                                {/* { department.filter( ( dpt ) => {
+                                    if ( dpt.id === nonConformity.departments[index]) {
+                                    return JSON.stringify(dpt.name);
+                                }})} */}
+                            </td>
                             <td>{ nonConformity["ocurrence-date"] }</td>
                         </tr>
                     ))}
 
                 </tbody>
             </table>
+            <div>
+                { department.map( (dpt) => (
+                    <ul key={dpt.id}>
+                        <h2>{dpt.name}</h2>
+                    </ul>
+                ))}
+            </div>
         </TableContent>
         </Switch>
         </BrowserRouter>

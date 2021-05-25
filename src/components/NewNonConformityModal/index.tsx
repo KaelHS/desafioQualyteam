@@ -1,9 +1,13 @@
 import Modal from 'react-modal';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+
+import { useNonConformity } from '../../contexts/useNonConformity';
 
 import { HiX } from "react-icons/hi";
+import addIcon from '../../assets/addIcon.png';
 import { FormContainer } from './styles';
-import { useNonConformity } from '../../contexts/useNonConformity';
+import { SectionContainer, ActionContainer } from './styles';
+import { DepartmentCheckbox } from '../DepartmentCheckbox';
 
 interface NewNonConformityModalProps {
     isOpen: boolean;
@@ -79,29 +83,38 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
                     onChange={ event => setDescription(event.target.value)}
                      ></textarea>
 
-                <div>
-                    <h3>Departamentos responsáveis</h3>
-                    <label>
-                    <input 
-                        type="checkbox" 
-                        name="department-option"
-                        value="Quality" 
-                         />Qualidade</label>
-                     <label>
-                    <input 
-                        type="checkbox" 
-                        name="department-option"
-                        value="Management" 
-                         />Gerência</label>
-                    <label>
-                    <input 
-                        type="checkbox" 
-                        name="department-option"
-                        value="Sales"
-                         />Vendas</label>
-                </div>
-                <label htmlFor="ocurrence-date">Data da ocorrência</label>
-                <input type="date" name="ocurrence-date" id="ocurrence-date" />
+                <SectionContainer>
+                    <div className="multiselect">
+                    <h4>Departamentos responsáveis</h4>
+                        {/* <div className="selectBox" >
+                        <select>
+                            <option>Select an option</option>
+                        </select>
+                        <div className="overSelect"></div>
+                        </div>
+                        <div id="checkboxes">
+                        <label htmlFor="one">
+                            <input type="checkbox" id="one" />First checkbox</label>
+                        <label htmlFor="two">
+                            <input type="checkbox" id="two" />Second checkbox</label>
+                        <label htmlFor="three">
+                            <input type="checkbox" id="three" />Third checkbox</label>
+                        </div> */}
+                    <DepartmentCheckbox />
+                    </div>
+                    <div>
+                        <label htmlFor="ocurrence-date">Data da ocorrência</label>
+                        <input type="date" name="ocurrence-date" id="ocurrence-date" />
+                    </div>
+                </SectionContainer>
+                <ActionContainer>
+                <h4>Adicionar ação corretiva</h4>
+                    <button
+                        type="button"
+                    > 
+                        <img src={addIcon} alt="Adicionar ação corretiva" />
+                    </button>
+                </ActionContainer>
                 <button type="submit">Cadastrar</button>
             </FormContainer>
 
