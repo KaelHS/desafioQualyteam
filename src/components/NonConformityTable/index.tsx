@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter , Switch, Route, Link } from 'react-router-dom';
-import { api } from "../../services/api";
 import { TableContent } from "./styles";    
 import { useNonConformity } from '../../contexts/useNonConformity';
 
@@ -8,34 +7,12 @@ import  deleteIcon  from '../../assets/deleteIcon.png';
 import sheetIcon from '../../assets/sheetIcon.png';
 
 
-interface Department {
-    id: number;
-    name: string;
-}
-
 interface NonConformityTableProps {
     onOpenViewModal: ( ) => void;
 }
 export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps) {
 
-    const [ department, setDepartment ] = useState<Department[]>([]);
-
-    const { nonConformities } = useNonConformity();
-
-
-    useEffect( () => {
-        async function loadDepartments () {
-
-            const { data } = await api.get('/departments');
-    
-            setDepartment(data);
-    
-        }
-        
-        loadDepartments();
-
-
-    }, [nonConformities])
+    const { departments, nonConformities } = useNonConformity();
 
     return (
         <BrowserRouter>
@@ -76,7 +53,7 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                             <td>
                                 {  
                                     nonConformity.departments.map( x => {
-                                        let depto = department.find( item => item.id === x );
+                                        let depto = departments.find( item => item.id === x );
                                         if (depto) { 
                                             if (nonConformity.departments.length > 1){
                                                 return depto.name + ',  ';
