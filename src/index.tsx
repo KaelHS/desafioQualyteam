@@ -6,8 +6,8 @@ import { routes } from './services/routes';
 import { GlobalStyle } from './styles/global';
 
 ReactDOM.render(
-  <DepartmentProvider>
   <BrowserRouter>
+    <DepartmentProvider>
     <Switch>
       { routes.map( (route, index) => {
           return(
@@ -27,7 +27,8 @@ ReactDOM.render(
             })}
     </Switch>
     <GlobalStyle />
+    </DepartmentProvider>
 </BrowserRouter>
-</DepartmentProvider>,
+,
   document.getElementById('root')
 );

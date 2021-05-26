@@ -12,6 +12,8 @@ export const GlobalStyle = createGlobalStyle`
 
         --text-blue: #1468a3;
 
+        --red: #e54;
+
     }
 
     * {

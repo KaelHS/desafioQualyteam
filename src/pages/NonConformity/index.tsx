@@ -25,36 +25,23 @@ const NonConformity: FunctionComponent<IPage & RouteComponentProps<any>> = ( pro
     const { departments } = useDepartments();
 
     
-    console.log(departments)
-    
     useEffect ( () => {
         
         const slug = props.match.params.slug;
         
         async function getData () {
+
             
             const { data } = await api.get<INonConformity>(`/non-conformities/${slug}`);
             
             setNConformity(data);
-            
-            console.log(data);
-            console.log(departments);
-            
-            console.log(nonConformities);
-            
-            // data.departments.map( x => {
-                //     let depto = departments.find( item => item.id === x );
-                //     if (depto) { 
-                    //         if (nConformity.departments.length > 1){
-                        //             return depto.name + '  ';
-                        //         }
-                        //     }      
-                        //     })
-                    }
+
+        }
+            console.log(nConformity);
                     
-                    getData();
+            getData();
                     
-                }, [props] );
+    }, [props] );
                 
         function handleOpenCorrectiveActionsModal( ) {
             setIsCorrectiveActionsModal(true);
@@ -68,8 +55,23 @@ const NonConformity: FunctionComponent<IPage & RouteComponentProps<any>> = ( pro
         <>
         <Container>
             <h1>{nConformity.title}</h1>
+            <span>Descrição</span>
             <p>{nConformity.description}</p>
-            <p>  {nConformity.departments}</p>
+            <span>Departamentos envolvidos</span>
+            {/* <p>{ nConformity.departments.map( x => {
+                let depto = departments.find( item => item.id === x );
+                    if (depto) { 
+                        if (nConformity.departments.length > 1){
+                            return depto.name + ' ';                       
+                        } else {
+                            return depto.name ;
+                        }                           
+                    }      
+                })
+            }</p> */}
+            <div>
+                <span>Ações Corretivas</span>
+            </div>
             <p>{nConformity['corrective-actions']}</p>
 
             <div>
