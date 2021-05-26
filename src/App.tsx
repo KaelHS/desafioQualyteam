@@ -7,6 +7,7 @@ import { NonConformityProvider } from './contexts/useNonConformity';
 import { Header } from './components/Header';
 
 import { GlobalStyle } from './styles/global';
+import { DepartmentProvider } from './contexts/useDepartments';
 
 Modal.setAppElement('#root');
 
@@ -27,11 +28,12 @@ function handleCloseNewConformityModal() {
     <NonConformityProvider>
 
       <Header onOpenNewNonConformityModal={handleOpenNewConformityModal}/>
-      <NonConformityTable />
-      {/* <GlobalStyle /> */}
-      <NewNonConformityModal
-        isOpen={isNonConformityModalOpen}
-        onRequestClose={handleCloseNewConformityModal} /> 
+    
+          <NonConformityTable />
+          {/* <GlobalStyle /> */}
+          <NewNonConformityModal
+            isOpen={isNonConformityModalOpen}
+            onRequestClose={handleCloseNewConformityModal} /> 
 
       </NonConformityProvider>
   );

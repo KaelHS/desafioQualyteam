@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 
 import { HiX } from "react-icons/hi";
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 import { FormContainer } from './styles';
 

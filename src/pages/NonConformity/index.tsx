@@ -23,6 +23,9 @@ const NonConformity: FunctionComponent<IPage & RouteComponentProps<any>> = ( pro
 
     const {  nonConformities } = useNonConformity();
     const { departments } = useDepartments();
+
+    
+    console.log(departments)
     
     useEffect ( () => {
         
@@ -80,6 +83,7 @@ const NonConformity: FunctionComponent<IPage & RouteComponentProps<any>> = ( pro
         <CorrectiveActionsModal
         isOpen={isCorrectiveActionsModal}
         onRequestClose={handleCloseCorrectiveActionsModal} /> 
+
         </>
     );
 }
