@@ -5,14 +5,16 @@ import { useNonConformity } from '../../contexts/useNonConformity';
 
 import  deleteIcon  from '../../assets/deleteIcon.png';
 import sheetIcon from '../../assets/sheetIcon.png';
+import { useDepartments } from "../../contexts/useDepartments";
 
 
 interface NonConformityTableProps {
     onOpenViewModal: ( ) => void;
 }
-export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps) {
+export function NonConformityTable ( ) {
 
-    const { departments, nonConformities } = useNonConformity();
+    const { nonConformities } = useNonConformity();
+    const { departments } = useDepartments();
 
     return (
         <BrowserRouter>
@@ -57,9 +59,11 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                                         if (depto) { 
                                             if (nonConformity.departments.length > 1){
                                                 return depto.name + ',  ';
+                                                
                                             } else {
                                                 return depto.name ;
                                             }
+                                            
                                         }      
                                       })
                                 }
@@ -67,10 +71,9 @@ export function NonConformityTable ( {onOpenViewModal}: NonConformityTableProps)
                             <td>{ nonConformity["ocurrence-date"] }</td>
                         </tr>
                     ))}
-
+ 
                 </tbody>
             </table>
-
         </TableContent>
         </Switch>
         </BrowserRouter>

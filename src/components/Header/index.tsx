@@ -22,7 +22,7 @@ export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
                     <ul>
                         <li><Link to="">Início</Link></li>
                         <li><Link to="">Consultas</Link></li>
-                        <li><Link to="">Visão Geral</Link></li>
+                        <li><Link to="">Visão Geral</Link></li> 
                     </ul>
                 </Nav>
 

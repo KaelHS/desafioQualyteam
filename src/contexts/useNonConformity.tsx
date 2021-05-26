@@ -16,12 +16,13 @@ interface Department {
     name: string;
 }
 
+
+
 // type NonConformityIput = Omit<NonConformity, 'id' >
 
 interface NonConformityContextData {
     nonConformities: Array<NonConformity>;
     createNonConformity: ( nonConformityInput: NonConformity ) => void ;
-    departments: Array<Department>;
 }
 
 interface NonConformityProviderProps {
@@ -36,18 +37,14 @@ const NonConformityContext = createContext<NonConformityContextData>(
 export function NonConformityProvider ( {children} : NonConformityProviderProps) {
 
     const [ nonConformities, setNonConformities ] = useState<NonConformity[]>([]);
-    const [ departments, setDepartments ] = useState<Department[]>([]);
 
 
     useEffect( () => {
-        api.get('/non-conformities').then( ({data}) => setNonConformities(data));
-    }, []);
+         
+        api.get('/non-conformities').then( ({ data }) => setNonConformities(data));
 
-    useEffect( () => {
-        api.get('/departments').then( ({data}) => setDepartments(data));
     }, []);
     
-
     async function createNonConformity ( nonConformityInput: NonConformity ) {
 
         const response = await api.post('/non-conformities', {
@@ -64,7 +61,7 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
     }
 
     return (
-        <NonConformityContext.Provider value={{nonConformities, createNonConformity, departments}}>
+        <NonConformityContext.Provider value={{nonConformities, createNonConformity}}>
             {children}
         </NonConformityContext.Provider>
     );
