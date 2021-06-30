@@ -2,21 +2,55 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { CorrectiveActionsModal } from "../../components/CorrectiveActionsModal";
+import { useNonConformity } from "../../hooks/useNonConformity";
 import { api } from "../../services/api";
 
 import { Container } from './styles';
+
+export interface NonConformity {
+    id: number;
+    title: string;
+    description?: string;
+    ocurrenceDate: Date;
+    departments: Array<string>
+    correctiveActions?: Array<number>
+}
 
 export function NonConformityInfo () {
 
     const { id }:any = useParams();
 
-    const [ nConformity, setNConformity ] = useState({} as any);
+    const [ singleNConformity, setSingleNConformity ] = useState<NonConformity>({} as NonConformity);
     const [ isCorrectiveActionsModal, setIsCorrectiveActionsModal ] = useState(false);
 
+    const { depts } = useNonConformity();
 
     useEffect ( () => {
-            
-        api.get(`/non-conformities/${id}`).then( ({ data }) => setNConformity(data));
+        
+        async function getSingleNonConformity() {
+
+            const { data }  = await api.get(`/non-conformities/${id}`);
+    
+            const dataFormatted = ({
+                id: data.id,
+                title: data.title,
+                description: data.description,
+                ocurrenceDate: data["ocurrence-date"],
+                departments: data.departments.map((id: number) => {
+                    let depto = depts.find( item => item.id === id );
+                    if(depto) {
+                        return depto.name + ' | '
+                    }
+                }),
+                correctiveActions: data["corrective-actions"]
+
+            })
+
+            setSingleNConformity(dataFormatted);
+
+        }
+        
+        getSingleNonConformity();
             
     }, [] )
 
@@ -31,25 +65,15 @@ export function NonConformityInfo () {
     return(
         <>
         <Container>
-            <h1>{nConformity.title}</h1>
+            <h1>{singleNConformity.title}</h1>
             <span>Descrição</span>
-            <p>{nConformity.description}</p>
+            <p>{singleNConformity.description}</p>
             <span>Departamentos envolvidos</span>
-            {/* <p>{ nConformity.departments.map( x => {
-                let depto = departments.find( item => item.id === x );
-                    if (depto) { 
-                        if (nConformity.departments.length > 1){
-                            return depto.name + ' ';                       
-                        } else {
-                            return depto.name ;
-                        }                           
-                    }      
-                })
-            }</p> */}
+            <p>{singleNConformity.departments}</p>
             <div>
                 <span>Ações Corretivas</span>
             </div>
-            <p>{nConformity['corrective-actions']}</p>
+            <p>{singleNConformity.correctiveActions}</p>
 
             <div>
                 <button

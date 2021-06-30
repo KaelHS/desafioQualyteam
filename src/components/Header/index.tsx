@@ -11,15 +11,12 @@ interface HeaderProps {
 
 export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
 
-    const [ search, setSearch ] = useState('');
-
     return (
         <>
         <HeaderSection>
             <BrowserRouter>
             <HeaderContainer>
                 <Nav>
-                    {/* <img src="" alt="Qualyteam" /> */}
                     <ul>
                         <li><Link to="">Início</Link></li>
                         <li><Link to="">Consultas</Link></li>

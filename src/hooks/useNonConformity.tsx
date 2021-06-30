@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { api } from "../services/api";
 import { INonConformity } from '../interfaces/nonConformity';
+import { IDepartment } from "../interfaces/department";
 
 export interface NonConformity {
     id: number;
@@ -16,6 +17,8 @@ export interface NonConformity {
 interface NonConformityContextData {
     nonConformities: Array<NonConformity>;
     createNonConformity: ( nonConformityInput: NonConformity ) => void ;
+    depts: Array<IDepartment>;
+    deleteNonConformity: (ncId: string) => Promise<void>;
 }
 
 interface NonConformityProviderProps {
@@ -30,15 +33,18 @@ const NonConformityContext = createContext<NonConformityContextData>(
 export function NonConformityProvider ( {children} : NonConformityProviderProps) {
 
     const [ nonConformities, setNonConformities ] = useState<NonConformity[]>([]);
+    const [ depts, setDepts ] = useState<IDepartment[]>([]);
 
+    async function getDepartments() {
+        const dpResponse = await api.get('/departments');
+        setDepts(dpResponse.data);
+    }
 
-    useEffect( () => {
-         
-        async function getData() {
+    async function getData() {
 
-        const response = await api.get('/non-conformities');
+        const ncResponse = await api.get('/non-conformities');
 
-        const dataFormatted = response.data.map( (nc: INonConformity) => ({
+        const dataFormatted = ncResponse.data.map( (nc: INonConformity) => ({
             id: nc.id,
             title: nc.title,
             description: nc.description,
@@ -51,9 +57,13 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
 
         }
 
+    useEffect( () => {
         getData();
+        getDepartments();
 
     }, []);
+
+
 
     let contador = 10;
     
@@ -72,8 +82,21 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
         ])
     }
 
+    async function deleteNonConformity (ncId: string) {
+
+        try {
+
+             await api.delete(`/non-conformities/${ncId}`);
+
+             await getData();
+
+        } catch (err) {
+          console.log(err)
+        }
+    }
+
     return (
-        <NonConformityContext.Provider value={{nonConformities, createNonConformity}}>
+        <NonConformityContext.Provider value={{nonConformities, createNonConformity, depts, deleteNonConformity}}>
             {children}
         </NonConformityContext.Provider>
     );

@@ -9,8 +9,6 @@ import { FormContainer } from './styles';
 import { SectionContainer, ActionContainer } from './styles';
 
 import { DepartmentCheckbox } from '../DepartmentCheckbox';
-import { useDepartments } from '../../hooks/useDepartments';
-import { IDepartment } from '../../interfaces/department';
 
 interface NewNonConformityModalProps {
     isOpen: boolean;
