@@ -62,6 +62,7 @@ export const InfoContainer = styled.div`
 
     display: flex;
     align-items: center;
+    justify-content: space-around;
 
     span {
         font-family: 'Titillium Web', sans-serif;
@@ -73,7 +74,7 @@ export const InfoContainer = styled.div`
     div {
         display: block;
         align-items: center;
-        margin-left: 4rem;
+        margin: 0 4rem;
 
         strong {
         display: block;
@@ -88,35 +89,6 @@ export const InfoContainer = styled.div`
             filter: brightness(0.8);
         }
 
-        ul {
-            list-style: none;
-            position:relative;
-
-            .sub-menu-login {
-                position:absolute;
-                top:3.2rem;
-                left:0;
-                display:none;
-                background-color:#fff;
-                width: 100%;
-            }
-
-            li {
-                a {
-                    color:#333; 
-                    text-decoration:none; 
-                    display:block;
-                    font-family: 'Titillium Web', sans-serif;
-                    font-weight: 600;
-                    font-size: 1rem;
-                }
-            }
-            li:hover ul, li.over ul {
-                cursor: pointer;
-                display:block;
-            }
-
-        }
     }
 
 `;

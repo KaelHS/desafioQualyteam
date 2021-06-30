@@ -3,6 +3,7 @@ import { BrowserRouter , Switch, Route, Link } from 'react-router-dom';
 import { HeaderContainer, HeaderSection, Nav, InfoContainer, SubHeaderSection } from "./styles";
 
 import { MdAddCircleOutline } from "react-icons/md";
+import { FiLogOut } from "react-icons/fi";
 
 interface HeaderProps {
     onOpenNewNonConformityModal: () => void;
@@ -27,19 +28,14 @@ export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
                 </Nav>
 
                 <InfoContainer>
-                    <span>Empresa</span>
-                    <div>
-                        <ul>
-                            <li>
-                                <strong>Olá, Kael</strong>
-                                <span>Administrador</span>
-                                <ul className="sub-menu-login">
-                                    <li><Link to="">Configurações</Link></li>
-                                    <li><Link to="">Sair</Link></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                        <span>Empresa</span>
+                        <div>
+                            <strong>Olá, Kael</strong>
+                            <span>Administrador</span>
+                        </div>
+                        <Link to="/">
+                            <FiLogOut size="1.5rem" color="var(--red-500)"/>
+                        </Link>
                 </InfoContainer>
             </HeaderContainer>
             </BrowserRouter>

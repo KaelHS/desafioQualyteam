@@ -6,8 +6,8 @@ import IPage from '../../interfaces/pages';
 import { INonConformity } from '../../interfaces/nonConformity';
 
 import { Container } from './styles';
-import { useNonConformity } from '../../contexts/useNonConformity';
-import { useDepartments } from '../../contexts/useDepartments';
+import { useNonConformity } from '../../hooks/useNonConformity';
+import { useDepartments } from '../../hooks/useDepartments';
 import { CorrectiveActionsModal } from '../../components/CorrectiveActionsModal';
 
 

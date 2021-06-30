@@ -1,42 +1,46 @@
+import React, { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-
-import { useNonConformity } from '../../contexts/useNonConformity';
+import DatePicker from 'react-date-picker';
+import { useNonConformity } from '../../hooks/useNonConformity';
 
 import { HiX } from "react-icons/hi";
-import addIcon from '../../assets/addIcon.png';
+import { IoIosAddCircle } from "react-icons/io";
 import { FormContainer } from './styles';
 import { SectionContainer, ActionContainer } from './styles';
+
 import { DepartmentCheckbox } from '../DepartmentCheckbox';
+import { useDepartments } from '../../hooks/useDepartments';
+import { IDepartment } from '../../interfaces/department';
 
 interface NewNonConformityModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
 }
 
-interface Department { 
-    id: number;
-    title: string;
-}
-
 export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConformityModalProps ) {
 
     const [ title, setTitle ] = useState('');
     const [ description, setDescription ] = useState('');
-    const [ date, setDate ] = useState(new Date());
-    const [ correctiveActions, setCorrectiveActions ] = useState({});
+    const [ ocurrenceDate, setOcurrenceDate ] = useState(new Date());
+    const [ correctiveActions, setCorrectiveActions ] = useState<Number[]>([]);
     
-    const [ departments, setDepartments ] = useState<Department[]>([]);
+    const [ departments, setDepartments ] = useState<Number[]>([]);
+    const [ indexDpt, setIndexDpt ] = useState<Number[]>([])
 
     const { createNonConformity } = useNonConformity();
+    // const { departments} = useDepartments()
 
-    // function handleSetDepartments ( event: ChangeEvent<HTMLInputElement> ) {
-    //     if ( event.target.checked  ) {
-    //         setDepartments([{...departments}, event.target.value])
+    // function handleSetDepartments ( {target}: any ) {
+    //     if ( target.checked  ) {
+    //         setDept([{...departments}, target.value])
     //     } else {
-    //         setDepartments( departments.filter( departament => departament !== event.target.value))
+    //         setDept( dept.filter( departament => departament !== target.value))
     //     }
     // }
+
+    // function handleChecked(id: number) {
+    //     return indexDpt.includes(id);
+    //   }
 
     async function handleCreateNewNonConformity( event: FormEvent) {
         event.preventDefault();
@@ -45,8 +49,8 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
         //     title,
         //     description,
         //     departments, 
-        //     "ocurrence-date",
-        //     "corrective-actions",
+        //     ocurrenceDate,
+        //     correctiveActions
         // })
 
         // onRequestClose();
@@ -86,25 +90,13 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
                 <SectionContainer>
                     <div className="multiselect">
                     <h4>Departamentos responsáveis</h4>
-                        {/* <div className="selectBox" >
-                        <select>
-                            <option>Select an option</option>
-                        </select>
-                        <div className="overSelect"></div>
-                        </div>
-                        <div id="checkboxes">
-                        <label htmlFor="one">
-                            <input type="checkbox" id="one" />First checkbox</label>
-                        <label htmlFor="two">
-                            <input type="checkbox" id="two" />Second checkbox</label>
-                        <label htmlFor="three">
-                            <input type="checkbox" id="three" />Third checkbox</label>
-                        </div> */}
-                    <DepartmentCheckbox />
                     </div>
                     <div>
-                        <label htmlFor="ocurrence-date">Data da ocorrência</label>
-                        <input type="date" name="ocurrence-date" id="ocurrence-date" />
+                        <label>Data da ocorrência</label>
+                        <DatePicker
+                            value={ocurrenceDate}
+                            onChange={setOcurrenceDate}
+                        />
                     </div>
                 </SectionContainer>
                 <ActionContainer>
@@ -112,7 +104,7 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
                     <button
                         type="button"
                     > 
-                        <img src={addIcon} alt="Adicionar ação corretiva" />
+                        <IoIosAddCircle size="2rem" color="var(--blue-ligth)"/>
                     </button>
                 </ActionContainer>
                 <button type="submit">Cadastrar</button>

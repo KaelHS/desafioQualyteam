@@ -1,22 +1,15 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { api } from "../services/api";
+import { INonConformity } from '../interfaces/nonConformity';
 
-
-interface NonConformity {
+export interface NonConformity {
     id: number;
     title: string;
-    description: string;
-    "ocurrence-date": string;
+    description?: string;
+    ocurrenceDate: Date;
     departments: Array<number>;
-    'corrective-actions': Array<number>
+    correctiveActions?: Array<number>
 }
-
-interface Department {
-    id: number;
-    name: string;
-}
-
-
 
 // type NonConformityIput = Omit<NonConformity, 'id' >
 
@@ -41,9 +34,28 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
 
     useEffect( () => {
          
-        api.get('/non-conformities').then( ({ data }) => setNonConformities(data));
+        async function getData() {
+
+        const response = await api.get('/non-conformities');
+
+        const dataFormatted = response.data.map( (nc: INonConformity) => ({
+            id: nc.id,
+            title: nc.title,
+            description: nc.description,
+            ocurrenceDate: nc['ocurrence-date'],
+            departments: nc.departments,
+            correctiveActions: nc['corrective-actions']
+          }))
+
+        setNonConformities(dataFormatted);
+
+        }
+
+        getData();
 
     }, []);
+
+    let contador = 10;
     
     async function createNonConformity ( nonConformityInput: NonConformity ) {
 

@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter , Switch, Route, Link } from 'react-router-dom';
+import React from "react";
+import { Link } from 'react-router-dom';
 import { TableContent } from "./styles";    
-import { useNonConformity } from '../../contexts/useNonConformity';
+import { useNonConformity } from '../../hooks/useNonConformity';
 
-import  deleteIcon  from '../../assets/deleteIcon.png';
-import sheetIcon from '../../assets/sheetIcon.png';
-import { useDepartments } from "../../contexts/useDepartments";
+import { RiFileEditFill } from 'react-icons/ri';
+import { FiTrash2 } from 'react-icons/fi';
 
 
 interface NonConformityTableProps {
     onOpenViewModal: ( ) => void;
 }
+
 export function NonConformityTable ( ) {
 
     const { nonConformities } = useNonConformity();
-    const { departments } = useDepartments();
 
     return (
-        <BrowserRouter>
-        <Switch>
         <TableContent>
             <table>
                 <thead>
@@ -36,24 +33,15 @@ export function NonConformityTable ( ) {
                     { nonConformities.map ( nonConformity => (
                         <tr key={ nonConformity.id}>
                             <td>
-                            <button>
-                                <Link to="">
-                                    <img src={deleteIcon} alt="Deletar não conformidade" />
-                                </Link>
-                            </button>
-                            <button
-                                type="button"
-                                // onClick={onOpenViewModal}
-                            >
+                                <button><FiTrash2  size="1rem" /></button>
                                 <Link to={`/nonconformity/${nonConformity.id}`}>
-                                    <img src={sheetIcon} alt="Visualizar não conformidade" />
+                                    <RiFileEditFill size="1rem" />
                                 </Link>
-                            </button>
                             </td>
                             <td>{nonConformity.title}</td>
                             <td className="descriptionData">{ nonConformity.description }</td>
                             <td>
-                                {  
+                                {/* {  
                                     nonConformity.departments.map( x => {
                                         let depto = departments.find( item => item.id === x );
                                         if (depto) { 
@@ -66,16 +54,14 @@ export function NonConformityTable ( ) {
                                             
                                         }      
                                       })
-                                }
+                                } */}
                             </td>
-                            <td>{ nonConformity["ocurrence-date"] }</td>
+                            <td>{ nonConformity.ocurrenceDate }</td>
                         </tr>
                     ))}
  
                 </tbody>
             </table>
         </TableContent>
-        </Switch>
-        </BrowserRouter>
     );
 }

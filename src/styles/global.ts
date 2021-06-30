@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
 
         --text-blue: #1468a3;
 
-        --red: #e54;
+        --red-500: #E62E4D;
 
     }
 
@@ -37,6 +37,11 @@ export const GlobalStyle = createGlobalStyle`
 
     button {
         cursor: pointer;
+    }
+
+    a {
+        text-decoration:none;
+        color: inherit;
     }
 
     .react-modal-overlay {

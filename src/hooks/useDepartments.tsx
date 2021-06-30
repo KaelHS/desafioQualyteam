@@ -1,15 +1,13 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { api } from "../services/api";
+import { IDepartment } from '../interfaces/department';
 
 
-interface Department {
-    id: number;
-    name: string;
-}
 
 interface DepartmentContextData {
 
-    departments: Array<Department>;
+    departments: Array<IDepartment>;
+    // formatDepartments: (id: number) => IDepartment;
 }
 
 interface DepartmentProvider {
@@ -23,7 +21,7 @@ const DepartmentContext = createContext<DepartmentContextData>(
 
 export function DepartmentProvider ( {children} : DepartmentProvider) {
 
-    const [ departments, setDepartments ] = useState<Department[]>([]);
+    const [ departments, setDepartments ] = useState<IDepartment[]>([]);
 
     useEffect( () => {
 
@@ -38,6 +36,17 @@ export function DepartmentProvider ( {children} : DepartmentProvider) {
 
 
     }, []);
+
+    function formatDepartments(id: number) {
+        let depto = departments.find( item => item.id === id );
+
+        let formatted = {
+            id: id,
+            name: depto?.name,
+        }
+
+        return formatted;
+    }
     
 
     return (
