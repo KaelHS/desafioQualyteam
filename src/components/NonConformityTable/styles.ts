@@ -34,7 +34,8 @@ export const TableContent = styled.div`
                 width: 1rem;
                 height: 2rem;
                 border: none;
-                margin: 0 0.4rem;
+                margin-right: 0.75rem;
+                background: transparent;
 
                 
                 img {

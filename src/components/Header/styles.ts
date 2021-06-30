@@ -117,20 +117,21 @@ export const SubHeaderSection = styled.section`
     }
 
     button {
-        height: 3rem;
+        display: flex;
+        align-items: center;
         background: #2cb;
         border-radius: 0.25rem;
         border: 2px solid #2cb;
-        padding: 0 0.125rem;
-        font-size: 1rem;
+        padding: 1rem;
+        font-size: 1.5rem;
         font-weight: 300;
         color: var(--text-blue);
 
         transition: filter 0.2s;
 
         &:hover {
-            filter: brightness(0.9);
-            color: var(--section-background);
+            filter: brightness(0.95);
+            color: #fff;
         }
     }
     

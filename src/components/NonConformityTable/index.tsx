@@ -33,9 +33,9 @@ export function NonConformityTable ( ) {
                     { nonConformities.map ( nonConformity => (
                         <tr key={ nonConformity.id}>
                             <td>
-                                <button><FiTrash2  size="1rem" /></button>
+                                <button><FiTrash2  size="1.2rem" color="var(--red-500)" /></button>
                                 <Link to={`/nonconformity/${nonConformity.id}`}>
-                                    <RiFileEditFill size="1rem" />
+                                    <RiFileEditFill size="1.2rem" color="var(--yellow-500)" />
                                 </Link>
                             </td>
                             <td>{nonConformity.title}</td>

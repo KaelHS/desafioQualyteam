@@ -46,12 +46,8 @@ export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
                     type="button"
                     onClick={onOpenNewNonConformityModal}
                 >
-                <MdAddCircleOutline />
+                <MdAddCircleOutline size="2rem" color="#fff"/>
                 Nova Ocorrência</button>
-                <input 
-                    type="text"
-                    placeholder="Pesquisar" />
-                <button type="button">Pesquisar</button>
 
         </SubHeaderSection>
 
