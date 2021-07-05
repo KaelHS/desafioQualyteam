@@ -4,9 +4,7 @@ import DatePicker from 'react-date-picker';
 import { useNonConformity } from '../../hooks/useNonConformity';
 
 import { HiX } from "react-icons/hi";
-import { IoIosAddCircle } from "react-icons/io";
-import { FormContainer } from './styles';
-import { SectionContainer, ActionContainer } from './styles';
+import { SectionContainer, FormContainer } from './styles';
 
 import { Multiselect } from '../Multiselect';
 
@@ -20,25 +18,11 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
     const [ title, setTitle ] = useState('');
     const [ description, setDescription ] = useState('');
     const [ ocurrenceDate, setOcurrenceDate ] = useState(new Date());
-    const [ correctiveActions, setCorrectiveActions ] = useState<Number[]>([]);
     
     const [ departments, setDepartments ] = useState<Number[]>([]);
-    const [ indexDpt, setIndexDpt ] = useState<Number[]>([])
 
     const { createNonConformity } = useNonConformity();
-    // const { departments} = useDepartments()
 
-    // function handleSetDepartments ( {target}: any ) {
-    //     if ( target.checked  ) {
-    //         setDept([{...departments}, target.value])
-    //     } else {
-    //         setDept( dept.filter( departament => departament !== target.value))
-    //     }
-    // }
-
-    // function handleChecked(id: number) {
-    //     return indexDpt.includes(id);
-    //   }
 
     async function handleCreateNewNonConformity( event: FormEvent) {
         event.preventDefault();
@@ -47,12 +31,10 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
         //     title,
         //     description,
         //     departments, 
-        //     ocurrenceDate,
-        //     correctiveActions
+        //     ocurrenceDate
         // })
 
-        // onRequestClose();
-
+        onRequestClose();
 
     }
         
@@ -98,14 +80,6 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
                         />
                     </div>
                 </SectionContainer>
-                <ActionContainer>
-                <h4>Adicionar ação corretiva</h4>
-                    <button
-                        type="button"
-                    > 
-                        <IoIosAddCircle size="2rem" color="var(--blue-ligth)"/>
-                    </button>
-                </ActionContainer>
                 <button type="submit">Cadastrar</button>
             </FormContainer>
 

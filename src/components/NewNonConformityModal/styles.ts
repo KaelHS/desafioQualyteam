@@ -74,7 +74,7 @@ export const FormContainer = styled.form`
 `;
 
 export const SectionContainer = styled.div`
-    margin: 1rem 0;
+    margin: 2rem 0 6rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
@@ -116,23 +116,3 @@ export const SectionContainer = styled.div`
     }
 `;
 
-export const ActionContainer = styled.div`
-
-    margin-top: 5rem;
-    display: flex;
-    align-items: center;
-
-    button[type="button"] {
-            padding: 0 1.5rem;
-            height: 2rem;
-            border: 0;
-            background: transparent;
-
-
-
-            img {
-                width: 2.5rem;
-                height: 2.5rem;
-            }
-        }
-`;
