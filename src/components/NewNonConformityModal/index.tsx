@@ -8,7 +8,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { FormContainer } from './styles';
 import { SectionContainer, ActionContainer } from './styles';
 
-import { DepartmentCheckbox } from '../DepartmentCheckbox';
+import { Multiselect } from '../Multiselect';
 
 interface NewNonConformityModalProps {
     isOpen: boolean;
@@ -88,6 +88,7 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
                 <SectionContainer>
                     <div className="multiselect">
                     <h4>Departamentos responsáveis</h4>
+                    <Multiselect />
                     </div>
                     <div>
                         <label>Data da ocorrência</label>

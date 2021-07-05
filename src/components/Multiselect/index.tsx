@@ -7,19 +7,31 @@ const options = [
     { value: 3, label: "Vendas" }
   ]
 
-export function CustomSelect() {
+export function Multiselect() {
 
-    const [ departments, setDepartments ] = useState([]);
+    const [ departments, setDepartments ] = useState<number[]>([]);
 
+    function handleSelect(event: any) {
+        
+        // const isArray = Array.isArray(event);
 
+        const updatedDepartments: number[] = event.map( (dp: any) => dp.value);
+        
+        setDepartments(updatedDepartments);
+
+    }
 
     return (
+        <>
         <Select 
             options={options}
             isMulti
-            onChange={ () => setDepartments}
-            // displayValue="name"
+            onChange={handleSelect}
             placeholder="Selecione o(s) departamento(s)"
             />
+
+        <p>{departments}</p>
+
+        </>
     );
 }
