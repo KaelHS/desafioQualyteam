@@ -7,10 +7,10 @@ export function Routes() {
     return(
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={Home}/>
-            {/* <Route exact path="/nonconformity/" component={Home}/> */}
+            <Route exact path="/" component={Login}/>
+            <Route exact path="/nonconformity" component={Home}/>
             <Route exact path="/nonconformity/:id" component={NonConformityInfo}/>
-            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/login" component={Login} /> */}
         </Switch>
     </BrowserRouter>
     );

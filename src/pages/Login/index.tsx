@@ -1,8 +1,9 @@
 import React, { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFakeAuth } from '../../hooks/useFakeAuth'
+import { HiOutlineFingerPrint } from 'react-icons/hi'
 
-import { LogoContainer, Form, Input } from './styles';
+import { Container } from './styles';
 
 const Login = () => {
 
@@ -11,31 +12,32 @@ const Login = () => {
 
     const history = useHistory();
 
-    const { getUser }  = useFakeAuth()
+    const { setUser }  = useFakeAuth()
 
 
     function handleSubmit(event: FormEvent) {
 
         event.preventDefault();
 
-        getUser(name, position)
+        setUser(name, position);
 
-        history.push('/');
+        history.push('/nonconformity');
         
     }
 
     return (
-            <Form onSubmit={handleSubmit}>
-                <LogoContainer>
-                    <img src="" alt="" />
-                </LogoContainer>
-                <Input 
+        <Container>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <HiOutlineFingerPrint size="6rem" color="var(--blue)"/> 
+                </div>
+                <input 
                     type="text" 
                     value={name}
                     placeholder="Nome" 
                     onChange={({target}) => setName(target.value)}
                     required />
-                <Input 
+                <input 
                     type="text" 
                     name="position" 
                     value={position}
@@ -43,8 +45,9 @@ const Login = () => {
                     onChange={({target}) => setPosition(target.value)}
                     required />
 
-                <Input type="submit" value="Entrar" />
-            </Form>
+                <input type="submit" value="Entrar" />
+            </form>
+        </Container>
     );
 }
 

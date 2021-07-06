@@ -1,13 +1,8 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-interface User {
-    name:string;
-    position: string;
-}
-
 interface FakeAuthContextData {
-    user: User;
-    getUser: ( name: string, position: string ) => void;
+    setUser: ( name: string, position: string ) => void;
+    removeUser: ( ) => void;
 }
 
 interface FakeAuthProviderProps {
@@ -19,19 +14,23 @@ const FakeAuthContext = createContext<FakeAuthContextData>(
 
 export function FakeAuthProvider ( {children} : FakeAuthProviderProps) {
 
-    const [ user, setUser ] = useState({} as User) ;
+    function setUser(name: string, position: string) {
 
-    function getUser(name: string, position: string) {
+        localStorage.setItem('name', name);
+        localStorage.setItem('position', position);
+    }
 
-        setUser({
-            name: name,
-            position: position
-        })
+    function removeUser(){
+
+        localStorage.setItem('name', '');
+        localStorage.setItem('position', '');
+    
+        
     }
 
     return (
         <FakeAuthContext.Provider 
-            value={ {user, getUser} } >
+            value={ { setUser, removeUser} } >
             {children}
         </FakeAuthContext.Provider>
     );

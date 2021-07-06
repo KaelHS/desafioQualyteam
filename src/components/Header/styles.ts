@@ -91,6 +91,11 @@ export const InfoContainer = styled.div`
 
     }
 
+    button {
+            background: transparent;
+            border: none;
+    }
+
 `;
 
 export const SubHeaderSection = styled.section`

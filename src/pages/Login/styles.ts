@@ -1,40 +1,54 @@
 import styled from 'styled-components';
 
-export const Form = styled.form`
-    padding: 20px;
-    width: 400px;
-    margin: auto;
-`;
+export const Container = styled.div`
 
-export const Input = styled.input`
-    width: 100%;
-    padding: 15px;
-    box-sizing:border-box;
+    margin: 5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &[type="password"], input[type="text"] {
 
-        border: 2px solid #dddddd;
-        margin-bottom: 15px;
-        
+    div {
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        margin-bottom: 40px;
     }
 
-    &[type="submit"] {
-        
-        background: #e54;
-        border: 0;
-        cursor: pointer;
-        font-weight: bold;
-        color: #ffffff;
-    }
+    form {
+        padding: 20px;
+        width: 400px;
 
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 0.5rem 0;
+
+            &[type="text"] {
+
+                border: 2px solid var(--gray-300);
+                border-radius: 0.25rem;
+                outline-color: var(--blue);
+                margin-bottom: 1rem;
+                
+            }
+
+            &[type="submit"] {
+                
+                background: var(--blue);
+                border: 0;
+                border-radius: 0.25rem;
+                cursor: pointer;
+                font-weight: bold;
+                color: #ffffff;
+                transition: filter 0.2s;
+
+                :hover {
+                    filter: brightness(0.8);
+                }
+            }
+        }
+                
+    }
 `;
 
-export const LogoContainer = styled.div`
-    padding: 0 100px;
-    margin-bottom: 40px;
-
-    & img {
-        margin-bottom: 15px;
-        margin-left: 50px;
-    }
-`;

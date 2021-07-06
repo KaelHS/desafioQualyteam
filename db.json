@@ -83,24 +83,6 @@
       "corrective-actions": [
         2
       ]
-    },
-    {
-      "id": 5,
-      "title": "Não Conformidade 5",
-      "description": "lçksafçlakjfçlai",
-      "departments": [
-        3
-      ],
-      "ocurrenceDate": "2021-07-06T14:12:07.760Z"
-    },
-    {
-      "id": 6,
-      "title": "Não Conformidade 6",
-      "description": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
-      "departments": [
-        2
-      ],
-      "ocurrenceDate": "2021-07-06T14:24:27.157Z"
     }
   ]
 }

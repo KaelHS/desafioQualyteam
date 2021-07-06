@@ -6,12 +6,14 @@ export const GlobalStyle = createGlobalStyle`
         --background: #fffafa;
         --section-background: #f9f9f9;
 
+        --text-blue: #1468a3;
+
         --blue: #078;
         --blue-dark: #14687a;
         --blue-ligth: #2cb;
 
-        --text-blue: #1468a3;
 
+        --gray-300: #a8a8b3;
         --red-500: #E62E4D;
         --yellow-500: #eba417;
 
