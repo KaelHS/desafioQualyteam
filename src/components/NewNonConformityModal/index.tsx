@@ -1,12 +1,12 @@
 import React, { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
+import Select from 'react-select';
 import DatePicker from 'react-date-picker';
 import { useNonConformity } from '../../hooks/useNonConformity';
 
 import { HiX } from "react-icons/hi";
 import { SectionContainer, FormContainer } from './styles';
 
-import { Multiselect } from '../Multiselect';
 
 interface NewNonConformityModalProps {
     isOpen: boolean;
@@ -15,27 +15,52 @@ interface NewNonConformityModalProps {
 
 export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConformityModalProps ) {
 
+    const options = [
+        { value: 1, label: "Qualidade" },
+        { value: 2, label: "Gerência" },
+        { value: 3, label: "Vendas" }
+    ];
+
     const [ title, setTitle ] = useState('');
     const [ description, setDescription ] = useState('');
     const [ ocurrenceDate, setOcurrenceDate ] = useState(new Date());
-    
-    const [ departments, setDepartments ] = useState<Number[]>([]);
+    const [ departments, setDepartments ] = useState<number[]>([]);
 
-    const { createNonConformity } = useNonConformity();
+    const { nonConformities ,createNonConformity } = useNonConformity();
+
+    function handleSelect(event: any) {
+
+        const updatedDepartments: number[] = event.map( (dp: any) => dp.value);
+        
+        setDepartments(updatedDepartments);
+
+    }
+    
+    function idGenerator(){
+       const ids = nonConformities.map( element => element.id );
+       const max = ids.reduce( (a,b) => Math.max(a,b));
+       const nextId = max+1
+
+       return nextId;
+
+    }
 
 
     async function handleCreateNewNonConformity( event: FormEvent) {
         event.preventDefault();
 
-        // await createNonConformity({
-        //     title,
-        //     description,
-        //     departments, 
-        //     ocurrenceDate
-        // })
+        await createNonConformity({
+            id: idGenerator(),
+            title,
+            description,
+            departments, 
+            ocurrenceDate
+        })
 
         onRequestClose();
-
+        setTitle('');
+        setDescription('');
+        setDepartments([]);
     }
         
     return(
@@ -70,7 +95,12 @@ export function NewNonConformityModal ( {isOpen, onRequestClose} : NewNonConform
                 <SectionContainer>
                     <div className="multiselect">
                     <h4>Departamentos responsáveis</h4>
-                    <Multiselect />
+                    <Select 
+                        options={options}
+                        isMulti
+                        onChange={handleSelect}
+                        placeholder="Selecione o(s) departamento(s)"
+                        />
                     </div>
                     <div>
                         <label>Data da ocorrência</label>

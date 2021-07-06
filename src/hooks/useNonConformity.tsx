@@ -2,23 +2,34 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 import { api } from "../services/api";
 import { INonConformity } from '../interfaces/nonConformity';
 import { IDepartment } from "../interfaces/department";
+import { ICorrectiveActions } from "../interfaces/correctiveActions";
 
 export interface NonConformity {
     id: number;
     title: string;
-    description?: string;
+    description: string;
     ocurrenceDate: Date;
     departments: Array<number>;
     correctiveActions?: Array<number>
 }
 
-// type NonConformityIput = Omit<NonConformity, 'id' >
+interface CorrectiveActions {
+    id: number;
+    what: string;
+    why: string;
+    how: string;
+    where: string;
+    untilWhen: string;
+}
+
+type NonConformityInput = Omit<NonConformity, 'id' >
 
 interface NonConformityContextData {
     nonConformities: Array<NonConformity>;
     createNonConformity: ( nonConformityInput: NonConformity ) => void ;
     depts: Array<IDepartment>;
     deleteNonConformity: (ncId: string) => Promise<void>;
+    cActions: Array<CorrectiveActions>;
 }
 
 interface NonConformityProviderProps {
@@ -34,10 +45,27 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
 
     const [ nonConformities, setNonConformities ] = useState<NonConformity[]>([]);
     const [ depts, setDepts ] = useState<IDepartment[]>([]);
+    const [ cActions, setCActions ] = useState<CorrectiveActions[]>([]);
 
     async function getDepartments() {
         const dpResponse = await api.get('/departments');
         setDepts(dpResponse.data);
+    }
+
+    async function getCorrectiveActions(){
+
+        const actResponse = await api.get('/corrective-actions');
+
+        const formattedResponse = actResponse.data.map( (action: ICorrectiveActions) => ({
+            id: action.id,
+            what: action["what-to-do"],
+            why: action["why-to-do-it"],
+            how: action["how-to-do-it"],
+            where: action["where-to-do-it"],
+            untilWhen: action["until-when"],
+        }))
+
+        setCActions(formattedResponse);
     }
 
     async function getData() {
@@ -60,26 +88,30 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
     useEffect( () => {
         getData();
         getDepartments();
+        getCorrectiveActions();
 
     }, []);
 
 
-
-    let contador = 10;
     
     async function createNonConformity ( nonConformityInput: NonConformity ) {
 
-        const response = await api.post('/non-conformities', {
+        // let contador = 5;
+
+        await api.post('/non-conformities', {
             ...nonConformityInput,
-            //confirmar
         }); 
 
-        const { nonConformity } = response.data;
+        // contador++;
 
-        setNonConformities([
-            ...nonConformities,
-            nonConformity
-        ])
+        // const { nonConformity } = response.data;
+
+        // setNonConformities([
+        //     ...nonConformities,
+        //     nonConformity
+        // ])
+
+        await getData();
     }
 
     async function deleteNonConformity (ncId: string) {
@@ -96,7 +128,8 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
     }
 
     return (
-        <NonConformityContext.Provider value={{nonConformities, createNonConformity, depts, deleteNonConformity}}>
+        <NonConformityContext.Provider 
+            value={{nonConformities, createNonConformity, depts, deleteNonConformity, cActions}}>
             {children}
         </NonConformityContext.Provider>
     );

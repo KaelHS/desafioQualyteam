@@ -23,7 +23,9 @@ export function NonConformityInfo () {
     const [ singleNConformity, setSingleNConformity ] = useState<NonConformity>({} as NonConformity);
     const [ isCorrectiveActionsModal, setIsCorrectiveActionsModal ] = useState(false);
 
-    const { depts } = useNonConformity();
+    const { depts, cActions } = useNonConformity();
+
+    console.log(cActions);
 
     useEffect ( () => {
         
@@ -42,7 +44,9 @@ export function NonConformityInfo () {
                         return depto.name + ' | '
                     }
                 }),
-                correctiveActions: data["corrective-actions"]
+                correctiveActions:  data["corrective-actions"].map( ( item: number) => {
+                    
+                })
 
             })
 
@@ -73,7 +77,26 @@ export function NonConformityInfo () {
             <div>
                 <span>Ações Corretivas</span>
             </div>
-            <p>{singleNConformity.correctiveActions}</p>
+            {/* <p>{singleNConformity.correctiveActions}</p> */}
+            <ul>
+            {  
+                cActions && singleNConformity.correctiveActions?.map( x => {
+
+                        let action = cActions.find( item => item.id === x );
+                        if (action) {
+                            
+                            <li key={action.id}>
+                                <p>{action.what}</p>
+                                <p>{action.how}</p>
+                                <p>{action.why}</p>
+                                <p>{action.where}</p>
+                                <p>{action.untilWhen}</p>
+                            </li>      
+                        }      
+                    })
+
+            }
+            </ul>
 
             <div>
                 <button
