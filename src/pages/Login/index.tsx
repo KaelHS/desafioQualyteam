@@ -1,56 +1,51 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { FormEvent, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useFakeAuth } from '../../hooks/useFakeAuth'
 
-const Form = styled.form`
-    padding: 20px;
-    width: 400px;
-    margin: auto;
-`;
+import { LogoContainer, Form, Input } from './styles';
 
-const Input = styled.input`
-    width: 100%;
-    padding: 15px;
-    box-sizing:border-box;
+const Login = () => {
 
-    &[type="password"], input[type="text"] {
+    const [ name, setName ] = useState('');
+    const [ position, setPosition ] = useState('');
 
-        border: 2px solid #dddddd;
-        margin-bottom: 15px;
+    const history = useHistory();
+
+    const { getUser }  = useFakeAuth()
+
+
+    function handleSubmit(event: FormEvent) {
+
+        event.preventDefault();
+
+        getUser(name, position)
+
+        history.push('/');
         
     }
 
-    &[type="submit"] {
-        
-        background: #e54;
-        border: 0;
-        cursor: pointer;
-        font-weight: bold;
-        color: #ffffff;
-    }
-
-`;
-
-const LogoContainer = styled.div`
-    padding: 0 100px;
-    margin-bottom: 40px;
-
-    & img {
-        margin-bottom: 15px;
-        margin-left: 50px;
-    }
-`;
-
-const LoginForm = () => {
     return (
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <LogoContainer>
                     <img src="" alt="" />
                 </LogoContainer>
-                <Input type="text" name="username" placeholder="Usuario" required />
-                <Input type="password" name="password" placeholder="Senha" required />
+                <Input 
+                    type="text" 
+                    value={name}
+                    placeholder="Nome" 
+                    onChange={({target}) => setName(target.value)}
+                    required />
+                <Input 
+                    type="text" 
+                    name="position" 
+                    value={position}
+                    placeholder="Cargo" 
+                    onChange={({target}) => setPosition(target.value)}
+                    required />
+
                 <Input type="submit" value="Entrar" />
             </Form>
     );
 }
 
-export default LoginForm;
+export default Login;
