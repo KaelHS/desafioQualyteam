@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useFakeAuth } from '../../hooks/useFakeAuth'
-import { HiOutlineFingerPrint } from 'react-icons/hi'
+import { useFakeAuth } from '../../hooks/useFakeAuth';
+import { IoIosFingerPrint } from 'react-icons/io';
 
 import { Container } from './styles';
 
@@ -29,7 +29,7 @@ const Login = () => {
         <Container>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <HiOutlineFingerPrint size="6rem" color="var(--blue)"/> 
+                    <IoIosFingerPrint size="7rem" color="var(--blue)"/> 
                 </div>
                 <input 
                     type="text" 
