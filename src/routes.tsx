@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Dashboard } from "./pages/Dashboard";
 import { Home } from "./pages/Home";
 import Login from "./pages/Login";
 import { NonConformityInfo } from "./pages/NonConformityInfo";
+import { QueryPage } from "./pages/QueryPage";
 
 export function Routes() {
     return(
@@ -11,7 +11,7 @@ export function Routes() {
             <Route exact path="/" component={Login}/>
             <Route exact path="/nonconformity" component={Home}/>
             <Route exact path="/nonconformity/:id" component={NonConformityInfo}/>
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/query" component={QueryPage} />
         </Switch>
     </BrowserRouter>
     );
