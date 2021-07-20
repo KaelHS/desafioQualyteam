@@ -10,7 +10,7 @@ export interface NonConformity {
     description: string;
     ocurrenceDate: Date;
     departments: Array<number>;
-    correctiveActions?: Array<number>
+    correctiveActions?: Array<number>;
 }
 
 interface CorrectiveActions {
@@ -19,10 +19,13 @@ interface CorrectiveActions {
     why: string;
     how: string;
     where: string;
-    untilWhen: string;
+    untilWhen: Date;
 }
 
-type NonConformityInput = Omit<NonConformity, 'id' >
+// interface CorrectiveActionsInput {
+//     ncID: number;
+//     correctiveActionsInput: ICorrectiveActions
+// }
 
 interface NonConformityContextData {
     nonConformities: Array<NonConformity>;
@@ -30,6 +33,7 @@ interface NonConformityContextData {
     depts: Array<IDepartment>;
     deleteNonConformity: (ncId: string) => Promise<void>;
     cActions: Array<CorrectiveActions>;
+    createCorrectiveAction: ( ncID: INonConformity, correctiveActionInput: ICorrectiveActions ) => Promise<void>;
 }
 
 interface NonConformityProviderProps {
@@ -96,20 +100,9 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
     
     async function createNonConformity ( nonConformityInput: NonConformity ) {
 
-        // let contador = 5;
-
         await api.post('/non-conformities', {
             ...nonConformityInput,
         }); 
-
-        // contador++;
-
-        // const { nonConformity } = response.data;
-
-        // setNonConformities([
-        //     ...nonConformities,
-        //     nonConformity
-        // ])
 
         await getData();
     }
@@ -127,9 +120,26 @@ export function NonConformityProvider ( {children} : NonConformityProviderProps)
         }
     }
 
+    async function createCorrectiveAction ( nc: INonConformity, correctiveActionsInput: ICorrectiveActions ) {
+
+        await api.post('/corrective-actions', {
+            ...correctiveActionsInput,
+        }); 
+
+        await api.put(`/non-conformities/${nc.id}`, {
+            ...nc,
+            // "corrective-actions": nc['corrective-actions']?.push(correctiveActionsInput.id)
+            "corrective-actions": [...nc["corrective-actions"] as any, correctiveActionsInput.id] 
+        })
+
+        const { data } = await api.get('/corrective-actions');
+        setCActions(data);
+
+    }
+
     return (
         <NonConformityContext.Provider 
-            value={{nonConformities, createNonConformity, depts, deleteNonConformity, cActions}}>
+            value={{nonConformities, createNonConformity, depts, deleteNonConformity, cActions, createCorrectiveAction}}>
             {children}
         </NonConformityContext.Provider>
     );

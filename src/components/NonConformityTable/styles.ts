@@ -44,6 +44,10 @@ export const TableContent = styled.div`
 
                 }
             }
+            &:last-child{
+                display: flex;
+                justify-content:center;
+            }
 
 
 

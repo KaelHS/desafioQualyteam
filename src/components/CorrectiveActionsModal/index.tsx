@@ -1,39 +1,63 @@
+import { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
 
-import { HiX } from "react-icons/hi";
-import { FormEvent, useState } from 'react';
+import { useNonConformity } from '../../hooks/useNonConformity';
 
+import { HiX } from "react-icons/hi";
 import { FormContainer } from './styles';
+import DatePicker from 'react-date-picker';
+import { api } from '../../services/api';
+import { INonConformity } from '../../interfaces/nonConformity';
 
 
 interface ViewyModalProps {
+    nConformity: INonConformity;
     isOpen: boolean;
     onRequestClose: () => void;
 }
 
-async function handleCreateNewCorrectiveAction( event: FormEvent) {
-    event.preventDefault();
+export function CorrectiveActionsModal ({nConformity, isOpen, onRequestClose} : ViewyModalProps) {
 
-    // await createNonConformity({
-    //     title,
-    //     description,
-    //     departments, 
-    //     "ocurrence-date",
-    //     "corrective-actions",
-    // })
-
-    // onRequestClose();
+    const [ what, setWhat ] = useState('');
+    const [ why, setWhy ] = useState('');
+    const [ how, setHow ] = useState('');
+    const [ where, setWhere ] = useState('');
+    const [ until, setUntil ] = useState(new Date());
 
 
-}
+    const { cActions, createCorrectiveAction } = useNonConformity();
 
-export function CorrectiveActionsModal ({isOpen, onRequestClose} : ViewyModalProps) {
+    function idGenerator(){
+        const ids = cActions.map( element => element.id );
+        const max = ids.reduce( (a,b) => Math.max(a,b));
+        let nextId = max+1;
+    
+        return nextId;
+    
+     }
+    
+    
+     async function handleCreateNewCorrectiveAction( event: FormEvent) {
+         event.preventDefault();
+    
+         await createCorrectiveAction( nConformity, {
+             id: idGenerator(),
+             "what-to-do": what,
+             "why-to-do-it": why,
+             "how-to-do-it": how,
+             "where-to-do-it": where,
+             "until-when": String(until),
+         })
 
-    const [ oque, setOque ] = useState('');
-    const [ porque, setPorque ] = useState('');
-    const [ como, setComo ] = useState('');
-    const [ onde, setOnde ] = useState('');
-    const [ date, setDate ] = useState(null);
+
+    
+         onRequestClose();
+         setWhat('');
+         setWhy('');
+         setHow('');
+         setWhere('');
+         setUntil(new Date());
+     }
 
     return(
         <Modal
@@ -50,33 +74,36 @@ export function CorrectiveActionsModal ({isOpen, onRequestClose} : ViewyModalPro
             <div>
                 <FormContainer onSubmit={handleCreateNewCorrectiveAction}>
                     <h3>Cadastro de Ação Corretiva</h3>
-                    <label htmlFor="title">O que fazer: </label>
+                    <label htmlFor="what">O que fazer: </label>
                     <input 
                         type="text"
-                        id="title"
-                        value={oque}
-                        onChange={ event => setOque(event.target.value)}/>
-                    <label htmlFor="title">Porque fazer: </label>
+                        id="what"
+                        value={what}
+                        onChange={ event => setWhat(event.target.value)}/>
+                    <label htmlFor="why">Porque fazer: </label>
                     <input 
                         type="text"
-                        id="title"
-                        value={porque}
-                        onChange={ event => setPorque(event.target.value)}/>
-                    <label htmlFor="title">Como fazer: </label>
+                        id="why"
+                        value={why}
+                        onChange={ event => setWhy(event.target.value)}/>
+                    <label htmlFor="how">Como fazer: </label>
                     <input 
                         type="text"
-                        id="title"
-                        value={como}
-                        onChange={ event => setComo(event.target.value)}/>
-                    <label htmlFor="title">O que fazer: </label>
+                        id="how"
+                        value={how}
+                        onChange={ event => setHow(event.target.value)}/>
+                    <label htmlFor="where">Onde fazer: </label>
                     <input 
                         type="text"
-                        id="title"
-                        value={onde}
-                        onChange={ event => setOnde(event.target.value)}/>
+                        id="where"
+                        value={where}
+                        onChange={ event => setWhere(event.target.value)}/>
                     <div>
-                        <label htmlFor="date">Data da ocorrência</label>
-                        <input type="date" name="date" id="date" />
+                        <label htmlFor="date">Previsão de resolução: </label>
+                        <DatePicker
+                            value={until}
+                            onChange={setUntil}
+                        />
                     </div>
                     <button type="submit">Cadastrar</button>   
                 </FormContainer>

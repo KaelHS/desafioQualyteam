@@ -58,6 +58,12 @@ export function NonConformityTable ( ) {
                                 }
                             </td>
                             <td>{ nonConformity.ocurrenceDate }</td>
+                            <td>
+                                { nonConformity.correctiveActions 
+                                    ? <button>[...]</button> 
+                                    : 'Sem Ações Corretivas'
+                                }
+                            </td>
                         </tr>
                     ))}
  

@@ -29,23 +29,122 @@
       "how-to-do-it": "Send an letter to anvisa",
       "where-to-do-it": "On the company",
       "until-when": "12-12-2019"
+    },
+    {
+      "id": 3,
+      "what": "asdf",
+      "why": "asdaf",
+      "how": "asdfa",
+      "where": "asdfa",
+      "untilWhen": ""
+    },
+    {
+      "id": 4,
+      "what-to-do": "lçasdfalk",
+      "why-to-do-it": "laslfaçdf",
+      "how-to-do-it": "çlç",
+      "where-to-do-it": "çl",
+      "until-when": "Mon Jul 19 2021 10:44:59 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 5,
+      "what-to-do": "Outra",
+      "why-to-do-it": "outra",
+      "how-to-do-it": "outra",
+      "where-to-do-it": "outra",
+      "until-when": "Thu Jul 22 2021 00:00:00 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "ncID": 1,
+      "id": 6,
+      "what-to-do": "TESTE DE CADASTRO DE AÇÃO CORRETIVA",
+      "why-to-do-it": "PARA VALIDAR A FEATURE",
+      "how-to-do-it": "INSERINDO CARACTER NA API",
+      "where-to-do-it": "NA API LOCAL DO JSON SERVER",
+      "until-when": "Tue Jul 20 2021 00:00:00 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 7,
+      "what-to-do": "lskdljçalkqçlj",
+      "why-to-do-it": "çlsjflçasldjfasldfalk",
+      "how-to-do-it": "ljaslçkjdfçlafdlç",
+      "where-to-do-it": "asldjçlajfçaf",
+      "until-when": "Mon Jul 19 2021 11:16:03 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 8,
+      "what-to-do": "OUTRO TESTE",
+      "why-to-do-it": "PRA VALIDAR",
+      "how-to-do-it": "AJUSTANDO METODO HTTP",
+      "where-to-do-it": "NA API LOCAL DO JSON SERVER",
+      "until-when": "Wed Jul 21 2021 00:00:00 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 9,
+      "what-to-do": "TESTE DE CADASTRO DE AÇÃO CORRETIVA",
+      "why-to-do-it": "LKASÇDFJALSKDFÇ",
+      "how-to-do-it": "LASLDAÇLFK",
+      "where-to-do-it": "SLÇAKDFAÇLDFAS",
+      "until-when": "Mon Jul 19 2021 15:09:20 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 10,
+      "what-to-do": "açslkfjalsdkjfçl",
+      "why-to-do-it": "çsalkdjflajdçalskj",
+      "how-to-do-it": "çlasdjdflçaskjflçasjf",
+      "where-to-do-it": "çlasdjfdladflasjaljas",
+      "until-when": "Mon Jul 19 2021 15:27:36 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 11,
+      "what-to-do": "lsakjfsalal",
+      "why-to-do-it": "l",
+      "how-to-do-it": "salslsafla",
+      "where-to-do-it": "laskdflafja",
+      "until-when": "Mon Jul 19 2021 15:30:33 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 12,
+      "what-to-do": "TESTE DE CADASTRO DE AÇÃO CORRETIVA",
+      "why-to-do-it": "lk,jlçkjfçlaj",
+      "how-to-do-it": "çlksaçlfjaçlkj",
+      "where-to-do-it": "çlkajsçdlfkjaçlfda",
+      "until-when": "Mon Jul 19 2021 20:34:13 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 13,
+      "what-to-do": "TESTE DE CADASTRO DE AÇÃO CORRETIVA",
+      "why-to-do-it": "ASDFAD",
+      "how-to-do-it": "ASDFAF",
+      "where-to-do-it": "ASDFASFAS",
+      "until-when": "Tue Jul 20 2021 13:07:24 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 14,
+      "what-to-do": "TESTE DE CADASTRO DE AÇÃO CORRETIVA",
+      "why-to-do-it": "PARA VALIDAR A FEATURE",
+      "how-to-do-it": "INSERINDO CARACTER NA API",
+      "where-to-do-it": "NA API LOCAL DO JSON SERVER",
+      "until-when": "Tue Jul 20 2021 13:10:25 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 15,
+      "what-to-do": "TESTE DE CADASTRO DE AÇÃO CORRETIVA",
+      "why-to-do-it": "PARA VALIDAR A FEATURE",
+      "how-to-do-it": "INSERINDO CARACTER NA API",
+      "where-to-do-it": "NA API LOCAL DO JSON SERVER",
+      "until-when": "Tue Jul 20 2021 13:12:53 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "id": 16,
+      "what-to-do": "TESTE DE CADASTRO DE AÇÃO CORRETIVA",
+      "why-to-do-it": "PARA VALIDAR A FEATURE",
+      "how-to-do-it": "INSERINDO CARACTER NA API",
+      "where-to-do-it": "NA API LOCAL DO JSON SERVER",
+      "until-when": "Tue Jul 20 2021 13:18:58 GMT-0300 (Horário Padrão de Brasília)"
     }
   ],
   "non-conformities": [
-    {
-      "id": 1,
-      "title": "Title of Non-Conformity 1",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit finibus quam eu efficitur. Nulla sed nisl sit amet libero faucibus gravida quis eu urna. Donec pulvinar a neque sed feugiat. Phasellus finibus a elit nec sagittis. Proin tincidunt dolor ante. Nulla ac consectetur massa. Donec gravida varius nisl, ac ultricies nulla dictum eu. Donec erat quam, vulputate quis elementum non, convallis interdum sem. Integer a sem aliquam, elementum mauris non, scelerisque lorem. Quisque at felis nec eros eleifend interdum. Pellentesque ullamcorper lorem massa, a aliquet nulla sagittis eu. Phasellus ut dignissim massa. Phasellus accumsan varius laoreet.",
-      "ocurrence-date": "12-09-2019",
-      "departments": [
-        1,
-        2
-      ],
-      "corrective-actions": [
-        1,
-        2
-      ]
-    },
     {
       "id": 2,
       "title": "Title of Non-Conformity 2",
@@ -56,7 +155,8 @@
         3
       ],
       "corrective-actions": [
-        1
+        1,
+        16
       ]
     },
     {
