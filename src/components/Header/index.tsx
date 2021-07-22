@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter , Link, useHistory } from 'react-router-dom';
-import { HeaderContainer, HeaderSection, Nav, InfoContainer, SubHeaderSection } from "./styles";
+import { HeaderContainer, HeaderSection, Nav, InfoContainer } from "./styles";
 
-import { MdAddCircleOutline } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { useFakeAuth } from "../../hooks/useFakeAuth";
 
@@ -10,7 +9,7 @@ interface HeaderProps {
     onOpenNewNonConformityModal: () => void;
 }
 
-export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
+export function Header ( ) {
 
     const history = useHistory();
 
@@ -31,8 +30,7 @@ export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
                 <Nav>
                     <ul>
                         <li><Link to="">Início</Link></li>
-                        <li><Link to="">Consultas</Link></li>
-                        <li><Link to="">Visão Geral</Link></li> 
+                        <li><Link to="/query">Consultas</Link></li>
                     </ul>
                 </Nav>
 
@@ -51,17 +49,6 @@ export function Header ( {onOpenNewNonConformityModal}: HeaderProps ) {
             </HeaderContainer>
             </BrowserRouter>
         </HeaderSection>
-        <SubHeaderSection>
-                <h1> <span>Não </span>Conformidades </h1>
-                <button 
-                    type="button"
-                    onClick={onOpenNewNonConformityModal}
-                >
-                <MdAddCircleOutline size="2rem" color="#fff"/>
-                Nova Ocorrência</button>
-
-        </SubHeaderSection>
-
         </>
     );
 }

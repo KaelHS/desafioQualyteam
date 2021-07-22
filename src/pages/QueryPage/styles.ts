@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    position: relative;
     padding: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .navigationButton {
+        position: absolute;
+        top: 1rem;
+        left:1rem;
+        border: none;
+        background: transparent;
+    }
 
     .querySection {
         display: flex;
@@ -16,7 +25,7 @@ export const Container = styled.div`
         margin: 4rem ;
         
         div{
-            margin: 2rem 0 2rem;
+            margin: 2rem 0 1rem;
             display:flex;
 
             input {
@@ -36,6 +45,23 @@ export const Container = styled.div`
                 }
 
             }
+        }
+
+        form {
+            margin-bottom: 2rem;
+
+            input {
+                margin-right: 0.25rem;
+
+            }
+
+            label{
+                margin-right: 0.75rem;
+            }
+
+
+
+
         }
     }
 `;

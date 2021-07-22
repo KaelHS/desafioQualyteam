@@ -9,9 +9,9 @@ export function Routes() {
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={Login}/>
+            <Route exact path="/query" component={QueryPage} />
             <Route exact path="/nonconformity" component={Home}/>
             <Route exact path="/nonconformity/:id" component={NonConformityInfo}/>
-            <Route exact path="/query" component={QueryPage} />
         </Switch>
     </BrowserRouter>
     );
